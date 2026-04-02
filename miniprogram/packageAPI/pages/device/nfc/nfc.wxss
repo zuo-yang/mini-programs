@@ -1,51 +1,247 @@
-.page-body-info {
-  margin-top: 25px;
-  padding: 15px 30px;
-  width: auto;
+/* ===== 通用卡片 ===== */
+.card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
 }
 
-.devices_summary {
-  padding: 5px;
-  font-size: 15px;
+.card-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
 }
 
-.device_list {
-  height: 150px;
-  border-radius: 3px;
-  flex: 1;
+/* ===== 读写卡片 ===== */
+.quick-card {
+  border: 2rpx solid #e8f4fd;
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
 }
 
-.device_item {
-  border-bottom: 1px solid var(--weui-FG-3);
-  padding: 5px;
-  color: var(--weui-FG-HALF);
+.quick-input-row {
+  margin-bottom: 20rpx;
 }
 
-.device_item_hover {
-  background-color: rgba(0, 0, 0, .1);
+.quick-input {
+  width: 100%;
+  height: 80rpx;
+  border: 2rpx solid #d1d5db;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  background: #fff;
+  box-sizing: border-box;
 }
 
-.handle-area {
+.quick-input:focus {
+  border-color: #3b82f6;
+}
+
+.quick-btn-row {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  gap: 20rpx;
+  align-items: center;
 }
 
-.handle-area .sup-tag {
-  margin: 0 5rpx;
-  border: 1rpx solid red;
+.quick-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 12rpx;
 }
 
-.handle-area button {
+.write-btn {
+  background: #f59e0b !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.read-btn {
+  background: #3b82f6 !important;
+  color: #fff !important;
+}
+
+.cancel-btn {
+  width: 200rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 26rpx;
+}
+
+.rw-status {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rw-status-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #f59e0b;
+  animation: pulse 1.5s infinite;
+}
+
+.rw-status-hint {
+  font-size: 24rpx;
+  color: #9ca3af;
+  margin-top: 6rpx;
+}
+
+.read-result {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #ecfdf5;
+  border-radius: 12rpx;
+  border: 2rpx solid #a7f3d0;
+}
+
+.read-result-label {
+  font-size: 26rpx;
+  color: #059669;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.read-result-text {
+  font-size: 32rpx;
+  color: #065f46;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* ===== 操作日志 ===== */
+.log-card {
+  padding-bottom: 16rpx;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.log-header .card-title {
+  margin-bottom: 0;
+}
+
+.clear-btn {
+  font-size: 24rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  padding: 0 20rpx;
+}
+
+.log-container {
+  height: 400rpx;
+  background: #f8fafc;
+  border: 2rpx solid #e2e8f0;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+
+.log-item {
+  font-size: 22rpx;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 6rpx;
+  word-break: break-all;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.log-empty {
   text-align: center;
-  width: 160rpx;
-  padding: 8rpx 5rpx;
+  color: #94a3b8;
+  font-size: 26rpx;
+  margin-top: 120rpx;
 }
 
-.handle-area button.target {
-  background: red;
+/* ===== 使用说明 ===== */
+.instruction-card {
+  background: #fffbeb;
+  border: 2rpx solid #fde68a;
 }
 
-.handle-area button.long {
-  width: 340rpx;
+.instruction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.instruction-item {
+  font-size: 24rpx;
+  color: #92400e;
+  line-height: 1.6;
+}
+
+/* ===== 动画 ===== */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ===== 深色模式 ===== */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: #1e293b;
+    box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.3);
+  }
+
+  .card-title {
+    color: #e2e8f0;
+  }
+
+  .quick-card {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 100%);
+    border-color: #334155;
+  }
+
+  .quick-input {
+    background: #334155;
+    border-color: #475569;
+    color: #e2e8f0;
+  }
+
+  .log-container {
+    background: #0f172a;
+    border-color: #334155;
+  }
+
+  .log-item {
+    color: #cbd5e1;
+  }
+
+  .log-empty {
+    color: #64748b;
+  }
+
+  .instruction-card {
+    background: #451a03;
+    border-color: #78350f;
+  }
+
+  .instruction-item {
+    color: #fbbf24;
+  }
+
+  .read-result {
+    background: #064e3b;
+    border-color: #065f46;
+  }
+
+  .read-result-label {
+    color: #34d399;
+  }
+
+  .read-result-text {
+    color: #a7f3d0;
+  }
 }

@@ -32,7 +32,7 @@
 		"ignore": [],
 		"include": []
 	},
-	"projectname": "main-demo",
+	"projectname": "githubdemo",
 	"editorSetting": {
 		"tabIndent": "insertSpaces",
 		"tabSize": 2
@@ -68,7 +68,7 @@
 			}
 		]
 	},
-	"TCSASappid": "mp2imcnkr2ou32ak",
+	"TCSASappid": "mp441seb8e99qj6h",
 	"condition": {
 		"plugin": {
 			"current": -1,

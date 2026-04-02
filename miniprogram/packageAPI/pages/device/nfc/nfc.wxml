@@ -3,41 +3,69 @@
 <import src="../../../../common/foot_en.wxml" />
 
 <view class="container page">
-  <template is="head" data="{{title: 'NFC'}}"/>
-  
   <view class="page-body">
-    <view>
-        <view>nfcAdapter onDiscovered {{t['nfc4']}}:</view>
-        <text>{{message}}</text>
-    </view>
-    <view class="btn-area">
-      <button type="primary" bindtap="getNFCAdapter">getNFCAdapter</button>
-      <button type="default" bindtap="goToIOSTest" style="margin-top: 20rpx;">iOS NFC 测试</button>
-    </view>
 
-    <block wx:if="{{pairTech.length > 0}}">
-        <text>{{t['nfc5']}}</text>
-        <view class="handle-area">
-            <view class="sup-tag" wx:for="{{pairTech}}">{{item}}</view>
-        </view>
-    </block>
+    <!-- ========== 读写卡片 ========== -->
+    <view class="card quick-card">
+      <text class="card-title">NFC 读写</text>
 
-    <block wx:if="{{tech.length > 0}}">
-      <text>{{t['nfc6']}}</text>
-      <button type="primary" bindtap="startDiscovery">startDiscovery</button>
-      <button type="primary" bindtap="stopDiscovery">stopDiscovery</button>
-      <text>{{t['nfc7']}}</text>
-      <view class="handle-area">
-        <button wx:for="{{tech}}" class="{{device === item ? 'target' : ''}}" data-method="{{item}}" type="primary" bindtap="newDevice">{{item}}</button>
+      <view class="quick-input-row">
+        <input
+          class="quick-input"
+          value="{{writeInput}}"
+          bindinput="onWriteInputChange"
+          placeholder="输入要写入的文本，如 Hello NFC"
+          disabled="{{rwBusy}}"
+        />
       </view>
-    </block>
 
-    <block wx:if="{{handleList.length > 0}}">
-        <text>{{t['nfc8']}}</text>
-        <view class="handle-area">
-            <button class="long" wx:for="{{handleList}}" data-method="{{item}}" type="primary" bindtap="doMethod">{{item}}</button>
+      <view class="quick-btn-row" wx:if="{{!rwBusy}}">
+        <button type="warn" class="quick-btn write-btn" bindtap="quickWrite">
+          Write NFC
+        </button>
+        <button type="primary" class="quick-btn read-btn" bindtap="quickRead">
+          Read NFC
+        </button>
+      </view>
+
+      <view class="quick-btn-row" wx:else>
+        <view class="rw-status">
+          <text class="rw-status-text">{{rwMode === 'write' ? '等待写入...' : '等待读取...'}}</text>
+          <text class="rw-status-hint">请将 NFC 标签靠近手机背面</text>
         </view>
-    </block>
+        <button type="default" class="cancel-btn" bindtap="cancelRW">取消</button>
+      </view>
+
+      <view class="read-result" wx:if="{{readResult}}">
+        <text class="read-result-label">读取结果:</text>
+        <text class="read-result-text">{{readResult}}</text>
+      </view>
+    </view>
+
+    <!-- ========== 操作日志 ========== -->
+    <view class="card log-card">
+      <view class="log-header">
+        <text class="card-title">操作日志</text>
+        <button type="default" size="mini" bindtap="clearLog" class="clear-btn">清空</button>
+      </view>
+      <scroll-view class="log-container" scroll-y="true" scroll-into-view="log-bottom">
+        <view class="log-item" wx:for="{{logMessages}}" wx:key="*this">{{item}}</view>
+        <view wx:if="{{logMessages.length === 0}}" class="log-empty">暂无日志</view>
+        <view id="log-bottom"></view>
+      </scroll-view>
+    </view>
+
+    <!-- ========== 使用说明 ========== -->
+    <view class="card instruction-card">
+      <text class="card-title">使用说明</text>
+      <view class="instruction-list">
+        <text class="instruction-item">1. 输入文本 → 点击 Write NFC → 将标签靠近手机完成写入</text>
+        <text class="instruction-item">2. 点击 Read NFC → 将标签靠近手机 → 自动读取并显示内容</text>
+        <text class="instruction-item">3. 操作过程中可随时点击"取消"中止</text>
+        <text class="instruction-item">注意: iOS 仅支持 NDEF 协议，不支持 transceive</text>
+      </view>
+    </view>
+
   </view>
 
   <template is="foot" wx:if="{{lang==='zh_CN'}}" />
