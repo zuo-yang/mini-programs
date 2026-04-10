@@ -1,8 +1,8 @@
 import { i18n, lang } from '../../../../i18n/lang'
 
 // 读写文本时的 tech 优先级（越靠前越优先）
-// const TECH_PRIORITY = ['ndef', 'mifareUltralight', 'nfcA', 'isoDep', 'mifareClassic', 'nfcB', 'nfcF', 'nfcV']
-const TECH_PRIORITY = ['nfcA']
+const TECH_PRIORITY = ['ndef', 'mifareUltralight', 'nfcA', 'isoDep', 'mifareClassic', 'nfcB', 'nfcF', 'nfcV']
+// const TECH_PRIORITY = ['nfcA']
 Page({
   onShareAppMessage() {
     return {
